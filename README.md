@@ -4,7 +4,7 @@ Requirements To Run
 -------------
 1. pip needs to be installed
 2. python3 needs to be installed
-3. bs4 and requests need to be installed via pip
+3. BeautifulSoup, bs4, requests, json, path, os.path, sys, psycopg2, and config need to be installed via pip
 
 What Is This?
 -------------

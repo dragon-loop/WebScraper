@@ -6,6 +6,8 @@ import json
 from os import path
 import os.path
 import sys
+import psycopg2
+from config import config
 
 DragonRouteUrl = "https://drexel.edu/facilities/transportation/busServiceSchedules/DragonRoute/"
 PoweltonSpringGardenRouteUrl = "https://drexel.edu/facilities/transportation/busServiceSchedules/PoweltonSpringGardenRoute/"
