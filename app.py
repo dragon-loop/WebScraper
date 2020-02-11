@@ -30,7 +30,7 @@ def pushToDb(data, name):
     for row in data:
         for key, value in row.items():
             #no time for this stop
-            if("–" not in value):
+            if("–" not in value and " " not in value):
                 if("PM" not in value):
                     timeObj = datetime.strptime(str(value).strip(), '%I:%M%p')
                 else:
@@ -54,7 +54,7 @@ def comparison(data, name):
     a, b = json.dumps(originalJsonObj), json.dumps(compareAgainstJsonObj)
     #if not equal then push to db and replace existing item else dont do anything
     if not a == b:
-        pushToDb(data, name)
+        #pushToDb(data, name)
         os.remove(name + ".json")
         with open(name + '.json','w') as outfile:
             json.dump(data, outfile)
@@ -65,7 +65,7 @@ def constructShape(data, name):
     if not path.exists(name + '.json'):
         with open(name + '.json','w') as outfile:
             json.dump(data, outfile)
-        pushToDb(data, name)
+        #pushToDb(data, name)
     else:
         comparison(json.dumps(data), name)
 
@@ -85,11 +85,16 @@ def getData(url, name):
     #append data to headers
     data = []
     for row in rows:
-        cells = row.find_all("td")
-        items = {}
-        for index in headers:
-            items[headers[index]] = cells[index].text
-        data.append(items)
+        if("strong" not in row):
+            cells = row.find_all("td")
+            items = {}
+            if(len(cells) > 0):
+                counter = 0
+                for index in headers:
+                    if(counter < len(headers) and len(cells) == len(headers)):
+                        items[headers[index]] = cells[index].text
+                    counter+=1
+                data.append(items)
 
     #remove first index as that are column headers
     data.pop(0)
