@@ -10,6 +10,11 @@ What Is This?
 -------------
 This is a simple Python application intended to web scrape against the Drexel bus schedule. It will build a JSON shape for each route and do comparison with the previous day's shape. If the shapes don't match then it will update the PostGres DB with the new schedule.
 
+The following endpoints it scrapes against are:
+1. https://drexel.edu/facilities/transportation/busServiceSchedules/DragonRoute/
+2. https://drexel.edu/facilities/transportation/busServiceSchedules/PoweltonSpringGardenRoute/
+3. https://drexel.edu/facilities/transportation/busServiceSchedules/QueenLaneRoute/
+
 DO NOT DOs
 -------------
 JSON files should be in root with the app.py file. Do not move it or it will result in creating a new file.
