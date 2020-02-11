@@ -22,7 +22,7 @@ def pushToDb(data, name):
     elif(name == "QueenLaneRoute"):
         routeId = 3
 
-    conn = psycopg2.connect(host="50.116.63.34", database="postgres", user="admin", password="postgres_admin", port="5432")
+    conn = psycopg2.connect(host="", database="", user="", password="", port="")
     cur = conn.cursor()
 
     counterTrip = 1
@@ -88,19 +88,18 @@ def getData(url, name):
         if("strong" not in row):
             cells = row.find_all("td")
             items = {}
-            if(len(cells) > 0):
-                counter = 0
-                for index in headers:
-                    if(counter < len(headers) and len(cells) == len(headers)):
-                        items[headers[index]] = cells[index].text
-                    counter+=1
+            counter = 0
+            for index in headers:
+                if(counter < len(headers) and len(cells) == len(headers)):
+                    items[headers[index]] = cells[index].text
+                counter+=1
                 data.append(items)
 
     #remove first index as that are column headers
     data.pop(0)
     constructShape(data, name)
 if __name__ == "__main__":
-    getData(DragonRouteUrl, "DragonRoute")
-    getData(PoweltonSpringGardenRouteUrl, "PoweltonSpringGardenRoute")
+    #getData(DragonRouteUrl, "DragonRoute")
+    #getData(PoweltonSpringGardenRouteUrl, "PoweltonSpringGardenRoute")
     getData(QueenLaneRouteUrl, "QueenLaneRoute")
 
